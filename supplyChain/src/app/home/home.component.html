@@ -1,0 +1,33 @@
+<mat-stepper [linear]="true" #stepper>
+    <mat-step label="Stage 1">
+        <div class="container">
+            <app-stage1></app-stage1>
+        </div>
+
+    </mat-step>
+    <mat-step label="Stage 2">
+        <div class="container">
+            <app-stage2></app-stage2>
+        </div>
+    </mat-step>
+    
+    <mat-step label="Stage 3">
+        <div class="container">
+            <app-stage3></app-stage3>
+        </div>
+    </mat-step>
+    
+    <mat-step label="Stage 4">
+        <div class="container">
+            <app-stage3></app-stage3>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-stepper>
