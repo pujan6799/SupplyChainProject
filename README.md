@@ -25,3 +25,22 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+Install GitHub page package
+npm i -g angular-cli-ghpages --save
+
+
+ng build --prod --base-href "/{{repo_name}}/"
+
+
+lastly, enter the below commands which creates a new branch called gh-pages and pushes
+the compiled code to the branch.
+ngh --dir=dist/{{project-name_inside_dist}}
+OR
+angular-cli-ghpages
+
+
+in dist/{{project-name_inside_dist}}/
+
+IMPORTANT :- create a 404.html and copy contents of index.html file (available in same directory) to this 404 file
