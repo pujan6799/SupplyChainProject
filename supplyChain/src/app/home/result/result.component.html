@@ -1,0 +1,141 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>
+                Preview
+            </h1>
+        </div>
+    </div>
+
+    <!-- Car Preview -->
+    <div class="row" *ngIf="configuration">
+        <div class="col-4 card d-flex justify-content-center shadow">
+            <div class="card-body">
+                <img [src]="configuration.carImg" alt="" class="car-img">
+            </div>
+        </div>
+
+        <div class="col-8">
+            
+            <!-- Configuration -->
+            <mat-accordion>
+                <!-- Wheels -->
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Wheels
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  
+                  <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Type</td>
+                            <td>{{configuration.wheel.title}}</td>
+                        </tr>
+                        <tr>
+                            <td>Manufacturer</td>
+                            <td>{{configuration.wheel.manufacturer}}</td>
+                        </tr>
+                        <tr>
+                            <td>Dimensions</td>
+                            <td>{{configuration.wheel.dimensions}}</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>{{configuration.wheel.warranty}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </mat-expansion-panel>
+
+                <!-- Bolts -->
+                <mat-expansion-panel opened>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Engine
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  
+                  
+                  <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Type</td>
+                            <td>{{configuration.engine.title}}</td>
+                        </tr>
+                        <tr>
+                            <td>Manufacturer</td>
+                            <td>{{configuration.engine.manufacturer}}</td>
+                        </tr>
+                        <tr>
+                            <td>Capacity</td>
+                            <td>{{configuration.engine.capacity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>{{configuration.engine.warranty}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </mat-expansion-panel>
+
+                <!-- Interior -->
+                <mat-expansion-panel opened>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Interior
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div>
+                    <h3>
+                        {{configuration.interior.fabric.name}}
+                    </h3>
+                    <img src="{{configuration.interior.fabric.img}}" alt="" class="fabric-img">
+                  </div>
+                </mat-expansion-panel>
+
+                <!-- Bolts -->
+                <mat-expansion-panel opened>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Bolts
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>
+                              Name
+                            </th>
+                            <th>
+                              Manufacturer
+                            </th>
+                            <th>
+                              Dimensions
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr *ngFor="let bolt of configuration.bolts">
+                            <td>
+                              {{bolt.name}}
+                            </td>
+                            <td>
+                              {{bolt.manufacturer}}
+                            </td>
+                            <td>
+                              {{bolt.dimensions}}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                     
+                    </div>
+                  </mat-expansion-panel>
+              </mat-accordion>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+.color {
+    height: 4rem;
+    width: 4rem;
+    cursor: pointer;
+    &:hover {
+        scale: 1.5;
+    }
+    transition: all 0.5s ease-in-out;
+}
+
+.color.color-celestite {
+    background-color: #636B79;
+}
+
+.color.color-pearlWhite {
+    background-color: #808080;
+}
+
+.color.color-black {
+    background-color: black;
+}

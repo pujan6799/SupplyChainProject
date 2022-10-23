@@ -1,39 +1,40 @@
+import { UserService } from './../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
-  loginForm: FormGroup = this.fb.group({
-    username: [null, Validators.required],
-    password: [null, Validators.required],
-  })
+  loginForm = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+  });
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   login(): void {
-    console.log("in login");
-    
-    if(this.loginForm.valid) {
+    if (this.loginForm.valid) {
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
-      if(username === 'test' && password === 'test') {
+      if (username === 'user' && password === 'user') {
+        this.userService.loginUser(username, false);
+        this.router.navigate(['home']);
+      } else if (username === 'admin' && password === 'admin') {
+        this.userService.loginUser(username, true);
         this.router.navigate(['home']);
       } else {
         console.log('Wrong Credentials');
       }
     }
   }
-
-
 }

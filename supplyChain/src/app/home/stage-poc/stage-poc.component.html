@@ -1,0 +1,273 @@
+<div class="container-fluid mt-3">
+
+    <div class="row mb-3">
+        <div class="col-12 d-flex justify-content-between">
+            <h1 class="mb-0">{{stageTitle}}</h1>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="availableParts.length > 0">
+                {{nextStageBtnTitle}}
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!-- Available Items -->
+        <div class="col-3 border p-4 shadow">
+            <h3>
+                Available Parts - {{availableParts.length}}
+            </h3>
+            <hr>
+            <div class="example-container">
+                <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="availableParts"
+                    cdkDropListSortingDisabled
+                    [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let part of availableParts; let first = first;" cdkDrag
+                        [cdkDragDisabled]="!first">
+                        <img src="{{part.img}}" alt="{{part.title}}" class="part-img img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assembled Items -->
+        <div class="col-6 border shadow">
+            <div class="d-flex justify-content-between mt-4">
+                <h3 class="mb-0">
+                    Assembled Parts - {{assembledParts.length}}
+                </h3>
+                <h3 class="mb-0">
+                    Time Taken : {{totalTime}}
+                </h3>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-center">
+                <div class="example-container">
+                    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="assembledParts"
+                        [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)"
+                        cdkDropListOrientation="horizontal">
+                        <div class="example-box" *ngFor="let part of assembledParts" cdkDrag
+                        [cdkDragDisabled]="true">
+                            <img src="{{part.img}}" alt="{{part.title}}" class="result-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration -->
+            <div>
+                <table class="table table-bordered">
+                    <tbody>
+                        
+                        <!-- Wheels -->
+                        <ng-container *ngIf="selectedWheels">
+                            <tr>
+                                <td>
+                                    Wheels
+                                </td>
+                                <td>
+                                    {{selectedWheels.title}}
+                                    <a class="text-primary" (click)="viewDetailsOf('wheels')">
+                                        view Details
+                                    </a>
+                                </td>
+                            </tr>
+                        </ng-container>
+
+                        <!-- Bolts -->
+                        <ng-container *ngIf="interiorBolts">
+                            <tr>
+                                <td>
+                                    Bolt Types
+                                </td>
+                                <td>
+                                    {{interiorBolts.name}}
+                                    <a class="text-primary" (click)="viewDetailsOf('interiorBolts')">
+                                        view Details
+                                    </a>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        <!-- Fabric -->
+                        <tr *ngIf="selectedFabric">
+                            <td>
+                                Fabric
+                            </td>
+                            <td class="d-flex justify-content-around align-items-center">
+                                {{selectedFabric.name}}
+                                <img [src]="selectedFabric.img" [alt]="selectedFabric.name" class="fabric-img">
+
+                                
+                                <a class="text-primary" (click)="viewDetailsOf('fabric')">
+                                    view Details
+                                </a>
+                            </td>
+                        </tr>
+
+                         <!-- Engine -->
+                         <tr *ngIf="selectedEngine">
+                            <td>
+                                Engine
+                            </td>
+                            <td>
+                                {{selectedEngine.title}}
+                                <a class="text-primary" (click)="viewDetailsOf('engine')">
+                                    view Details
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Extra Info -->
+        <div class="col-3 border shadow pt-4">
+            
+            <!-- Fabric -->
+            <ng-container *ngIf="viewDetails.viewfabricDetails">
+                <mat-card>
+                    <mat-card-subtitle>Fabric</mat-card-subtitle>
+                    <mat-card-title>
+                        {{selectedFabric.name}}
+                    </mat-card-title>
+                    <mat-card-content>
+                        <img [src]="selectedFabric.img" [alt]="selectedFabric.name" class="img-fluid">
+                      </mat-card-content>
+                </mat-card>
+            </ng-container>
+            
+            <!-- Wheels -->
+            <ng-container *ngIf="viewDetails.viewWheelDetails">
+                <mat-card>
+                    <mat-card-title>
+                        Wheels
+                    </mat-card-title>
+                    <mat-card-content>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Type
+                                    </td>
+                                    <td>
+                                        {{selectedWheels.title}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Manufacturer
+                                    </td>
+                                    <td>
+                                        {{selectedWheels.manufacturer}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Dimensions
+                                    </td>
+                                    <td>
+                                        {{selectedWheels.dimensions}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Warranty
+                                    </td>
+                                    <td>
+                                        {{selectedWheels.warranty}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      </mat-card-content>
+                </mat-card>
+            </ng-container>
+            
+            <!-- Bolts -->
+            <ng-container *ngIf="viewDetails.viewInteriorBolts">
+                <mat-card>
+                    <mat-card-title>
+                        Bolt Types
+                    </mat-card-title>
+                    <mat-card-content class="mt-2">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Type
+                                    </td>
+                                    <td>
+                                        {{interiorBolts.name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Manufacturer
+                                    </td>
+                                    <td>
+                                        {{interiorBolts.manufacturer}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Dimensions
+                                    </td>
+                                    <td>
+                                        {{interiorBolts.dimensions}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      </mat-card-content>
+                </mat-card>
+            </ng-container>
+            
+            <!-- Engine -->
+            <ng-container *ngIf="viewDetails.viewEngineDetails">
+                <mat-card>
+                    <mat-card-title>
+                        Engine
+                    </mat-card-title>
+                    <mat-card-content>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Type
+                                    </td>
+                                    <td>
+                                        {{selectedEngine.title}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Manufacturer
+                                    </td>
+                                    <td>
+                                        {{selectedEngine.manufacturer}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Capacity
+                                    </td>
+                                    <td>
+                                        {{selectedEngine.capacity}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Warranty
+                                    </td>
+                                    <td>
+                                        {{selectedEngine.warranty}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      </mat-card-content>
+                </mat-card>
+            </ng-container>
+        </div>
+    </div>
+</div>

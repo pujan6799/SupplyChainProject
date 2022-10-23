@@ -1,0 +1,29 @@
+<mat-stepper linear #stepper>
+    <mat-step *ngFor="let stage of stages; let i = index">
+        <ng-template matStepLabel>{{stage.title}}</ng-template>
+        <app-stage-poc
+            [availableParts]="stage.AVAILABLE_PARTS"
+            [stageTitle]="stage.title"
+            [resultFromLastStage]="stage.resultPart"
+            [previousStageTime]="i === 0 ? 0 : stages[i-1].totalTimeForStage"
+            (wheelsSelected)="wheelsSelected($event)"
+            (engineSelected)="engineSelected($event)"
+            (interiorSelected)="interiorSelected($event)"
+            (interiorBoltsSelected)="boltsSelected($event)"
+            (exteriorBoltsSelected)="boltsSelected($event)"
+            >
+        </app-stage-poc>
+    </mat-step>
+    
+    <!-- Car Color -->
+    <mat-step>
+        <ng-template matStepLabel>Color</ng-template>
+        <app-car-color (carColorSelected)="carColorSelected($event)"></app-car-color>
+    </mat-step>
+    
+    <!-- Summary -->
+    <mat-step>
+        <ng-template matStepLabel>Result</ng-template>
+        <app-result [configuration]="configuration"></app-result>
+    </mat-step>
+</mat-stepper>

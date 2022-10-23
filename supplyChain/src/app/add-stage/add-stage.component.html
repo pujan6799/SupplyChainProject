@@ -1,0 +1,110 @@
+<div class="container p-3">
+  <div class="row mb-3">
+    <div class="col-12 d-flex justify-content-between">
+      <h1>Add a stage</h1>
+      <button mat-raised-button color="primary" (click)="saveStage()" [disabled]="!stageForm.valid || parts.length === 0">
+        Save
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="stageForm">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Stage Title</mat-label>
+          <input matInput formControlName="stageTitle" />
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+
+  <!-- Stage Location -->
+  <div class="row">
+    <div class="col-12">
+      <h3>Select Where you want to add the Stage</h3>
+      <div class="p-4 shadow d-flex justify-content-between">
+        <ng-container
+          *ngFor="let stage of stages; let last = last; let i = index"
+        >
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="setStagePosition(i)"
+            [class.bg-success]="stageForm.get('stagePosition')?.value === i"
+          >
+            {{
+              stageForm.get("stagePosition")?.value === i
+                ? "Adding Here"
+                : "Add Here"
+            }}
+          </button>
+          <button mat-raised-button class="mr-3">
+            {{ stage.title }}
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            *ngIf="last"
+            (click)="setStagePosition(i + 1)"
+            [class.bg-success]="stageForm.get('stagePosition')?.value === i + 1"
+          >
+            {{
+              stageForm.get("stagePosition")?.value === i + 1
+                ? "Adding Here"
+                : "Add Here"
+            }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Part Button -->
+  <div class="row mt-4">
+    <div class="col-12 d-flex justify-content-end">
+      <button mat-raised-button color="primary" (click)="addPart()">
+        Add Part
+      </button>
+    </div>
+  </div>
+
+  <!-- Parts -->
+  <div class="row mt-3">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Preview</th>
+            <th>Result Part</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let part of parts">
+            <td>
+              {{ part.title }}
+            </td>
+            <td>
+              <img
+                class="new-part-img"
+                [src]="part.img"
+                alt="{{ part.title }}"
+              />
+            </td>
+            <td>
+              <ng-container *ngIf="part.resultPart?.img">
+                <img
+                  [src]="part.resultPart?.img"
+                  [alt]="part.resultPart?.title"
+                  class="new-part-img"
+                />
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

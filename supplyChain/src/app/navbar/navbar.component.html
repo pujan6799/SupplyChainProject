@@ -1,11 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" routerLink="/">Supply Chain</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" routerLink="login">Login</a>
-      </div>
+<mat-toolbar color="primary">
+  <span>Supply Chain</span>
+  <div class="d-flex justify-content-between w-100">
+    <div [class.invisible]="!userData.isLoggedIn">
+      <button mat-button (click)="goToHome()">Home</button>
+      <button mat-button (click)="addStage()" *ngIf="userData.isAdmin">Add a Stage</button>
     </div>
-  </nav>
+    <button mat-button (click)="goToLogin()" *ngIf="!userData.isLoggedIn">Login</button>
+    <ng-container *ngIf="userData.isLoggedIn">
+      <div>
+        <span>
+          {{userData.username}}
+        </span>
+        <button mat-button (click)="logout()">Logout</button>
+      </div>
+    </ng-container>
+  </div>
+</mat-toolbar>

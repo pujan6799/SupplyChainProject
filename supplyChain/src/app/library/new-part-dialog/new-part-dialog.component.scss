@@ -1,0 +1,15 @@
+.part-img {
+    height: 10rem;
+}
+
+.part-preview {
+    width: 12rem;
+    height: 12rem;
+    border: 1px dashed lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: darkgray;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 mat-dialog-title>Add Bolt Type</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+        <form [formGroup]="boltForm">
+            <mat-form-field class="w-100 mb-3">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field>
+
+            <br>
+            <mat-slide-toggle color="primary" formControlName="available">Available</mat-slide-toggle>
+        </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+        <div mat-dialog-actions class="d-flex justify-content-end">
+            <button mat-raised-button color="primary" cdkFocusInitial (click)="addBoltType()">Ok</button>
+          </div>
+    </div>
+  </div>
+</div>

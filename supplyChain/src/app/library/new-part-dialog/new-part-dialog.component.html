@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 mat-dialog-title>Add Part</h1>
+      <div mat-dialog-content>
+        <form [formGroup]="partForm" class="mb-3">
+          <!-- Title -->
+          <mat-form-field class="w-100">
+            <mat-label> Part Name </mat-label>
+            <input
+              matInput
+              type="text"
+              name="title"
+              id="title"
+              formControlName="title"
+            />
+          </mat-form-field>
+
+          <!-- Time Required -->
+          <mat-form-field class="w-100">
+            <mat-label> Time Required </mat-label>
+            <input
+              matInput
+              type="number"
+              name="Time Required"
+              id="timeRequired"
+              formControlName="timeRequired"
+            />
+          </mat-form-field>
+        </form>
+
+        <!-- Part Preview -->
+        <div class="d-flex justify-content-center">
+          <ng-container *ngIf="!partForm.get('img')?.value">
+            <label (click)="file1.click()" class="part-preview">
+              Select Part Image
+            </label>
+            <input
+              #file1
+              type="file"
+              hidden
+              accept=".jpg, .png"
+              id="file1"
+              (change)="addAvailablePart($event, false)"
+            />
+          </ng-container>
+          <ng-container *ngIf="partForm.get('img')?.value">
+            <img
+              [src]="partForm.get('img')?.value"
+              alt="Preview"
+              class="part-preview"
+            />
+          </ng-container>
+        </div>
+
+        <!-- Result Part Preview -->
+        <div class="d-flex justify-content-center">
+          <ng-container *ngIf="!partForm.get('resultImg')?.value">
+            <label (click)="file2.click()" class="part-preview">
+              Select Result Part Image
+            </label>
+            <input
+              #file2
+              type="file"
+              hidden
+              accept=".jpg, .png"
+              id="file2"
+              (change)="addAvailablePart($event, true)"
+            />
+          </ng-container>
+          <ng-container *ngIf="partForm.get('resultImg')?.value">
+            <img
+              [src]="partForm.get('resultImg')?.value"
+              alt="Preview"
+              class="part-preview"
+            />
+          </ng-container>
+        </div>
+      </div>
+      <div mat-dialog-actions class="d-flex justify-content-end">
+        <button
+          mat-raised-button
+          color="primary"
+          cdkFocusInitial
+          (click)="addPart()"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

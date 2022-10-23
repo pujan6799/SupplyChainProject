@@ -1,47 +1,28 @@
+import { LibraryModule } from './library/library.module';
+import { MaterialModule } from './library/material/material.module';
+import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
-import { Stage1Component } from './stage1/stage1.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { Stage2Component } from './stage2/stage2.component';
-import { Stage3Component } from './stage3/stage3.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { BoltsDialogComponent } from './bolts-dialog/bolts-dialog.component';
-import {MatChipsModule} from '@angular/material/chips';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddStageComponent } from './add-stage/add-stage.component';
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    LoginComponent,
-    HomeComponent,
-    Stage1Component,
-    Stage2Component,
-    Stage3Component,
-    BoltsDialogComponent
-  ],
+  declarations: [AppComponent, LoginComponent, NavbarComponent, AddStageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
-    DragDropModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatChipsModule
+    ReactiveFormsModule,
+    FormsModule,
+    HomeModule,
+    MaterialModule,
+    LibraryModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
