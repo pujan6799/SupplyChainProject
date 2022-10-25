@@ -76,15 +76,24 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Time Required</th>
             <th>Preview</th>
             <th>Result Part</th>
           </tr>
         </thead>
 
         <tbody>
+          <tr *ngIf="parts.length === 0">
+            <td colspan="4" class="text-black-50 text-center">
+              <h1 class="mb-0">No Parts Added!</h1>
+            </td>
+          </tr>
           <tr *ngFor="let part of parts">
             <td>
               {{ part.title }}
+            </td>
+            <td>
+              {{ part.timeRequired }}
             </td>
             <td>
               <img

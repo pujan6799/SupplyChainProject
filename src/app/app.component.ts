@@ -6,25 +6,25 @@ import { UserService } from 'src/shared/services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
   title = 'supplyChain';
   destroy$ = new Subject();
-  constructor(
-    private userService: UserService,
-    private router: Router
-  ) {
-    userService.userData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
-      userData => {
+  constructor(private userService: UserService, private router: Router) {
+    this.userService.userData$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((userData) => {
+        // If user has not logged in then routing to Login Page
         if (!userData.isLoggedIn) {
-          router.navigate(['login']);
+          this.router.navigate(['login']);
         }
-      }
-    )
+      });
   }
+
+  /**
+   * @description To unsubscriobe from userData subscription
+   */
   ngOnDestroy(): void {
     this.destroy$.complete();
   }

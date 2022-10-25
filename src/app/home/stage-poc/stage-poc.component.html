@@ -54,7 +54,7 @@
             </div>
 
             <!-- Configuration -->
-            <div>
+            <div class="mt-4">
                 <table class="table table-bordered">
                     <tbody>
                         
@@ -66,7 +66,7 @@
                                 </td>
                                 <td>
                                     {{selectedWheels.title}}
-                                    <a class="text-primary" (click)="viewDetailsOf('wheels')">
+                                    <a class="text-primary cursor-pointer" (click)="viewDetailsOf('wheels')">
                                         view Details
                                     </a>
                                 </td>
@@ -81,7 +81,7 @@
                                 </td>
                                 <td>
                                     {{interiorBolts.name}}
-                                    <a class="text-primary" (click)="viewDetailsOf('interiorBolts')">
+                                    <a class="text-primary cursor-pointer" (click)="viewDetailsOf('interiorBolts')">
                                         view Details
                                     </a>
                                 </td>
@@ -97,7 +97,7 @@
                                 <img [src]="selectedFabric.img" [alt]="selectedFabric.name" class="fabric-img">
 
                                 
-                                <a class="text-primary" (click)="viewDetailsOf('fabric')">
+                                <a class="text-primary cursor-pointer" (click)="viewDetailsOf('fabric')">
                                     view Details
                                 </a>
                             </td>
@@ -110,7 +110,7 @@
                             </td>
                             <td>
                                 {{selectedEngine.title}}
-                                <a class="text-primary" (click)="viewDetailsOf('engine')">
+                                <a class="text-primary cursor-pointer" (click)="viewDetailsOf('engine')">
                                     view Details
                                 </a>
                             </td>
@@ -130,7 +130,7 @@
                     <mat-card-title>
                         {{selectedFabric.name}}
                     </mat-card-title>
-                    <mat-card-content>
+                    <mat-card-content class="mt-4">
                         <img [src]="selectedFabric.img" [alt]="selectedFabric.name" class="img-fluid">
                       </mat-card-content>
                 </mat-card>
@@ -142,7 +142,7 @@
                     <mat-card-title>
                         Wheels
                     </mat-card-title>
-                    <mat-card-content>
+                    <mat-card-content class="mt-4">
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
@@ -189,7 +189,7 @@
                     <mat-card-title>
                         Bolt Types
                     </mat-card-title>
-                    <mat-card-content class="mt-2">
+                    <mat-card-content class="mt-4">
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
@@ -228,7 +228,7 @@
                     <mat-card-title>
                         Engine
                     </mat-card-title>
-                    <mat-card-content>
+                    <mat-card-content class="mt-4">
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>

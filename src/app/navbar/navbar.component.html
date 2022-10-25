@@ -9,7 +9,7 @@
     <ng-container *ngIf="userData.isLoggedIn">
       <div>
         <span>
-          {{userData.username}}
+          {{userData.username | titlecase}}
         </span>
         <button mat-button (click)="logout()">Logout</button>
       </div>

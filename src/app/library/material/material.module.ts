@@ -12,6 +12,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 const MATERIAL_MODULES = [
   MatToolbarModule,
   MatIconModule,
@@ -24,7 +25,8 @@ const MATERIAL_MODULES = [
   DragDropModule,
   MatDialogModule,
   MatSlideToggleModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({
@@ -32,4 +34,4 @@ const MATERIAL_MODULES = [
   imports: [CommonModule, ...MATERIAL_MODULES],
   exports: [...MATERIAL_MODULES],
 })
-export class MaterialModule { }
+export class MaterialModule {}
