@@ -50,7 +50,6 @@ export class UserService {
   }
 
   updateStages(stages: IStage[]): void {
-    this.allStages
     this.allStages = stages;
     this.stages$.next(this.allStages);
   }
